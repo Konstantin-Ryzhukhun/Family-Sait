@@ -1,0 +1,297 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}{{catalog_category.title_us|safe}}{% endblock %}
+{% block description %}{{catalog_category.description|safe}}{% endblock %}
+
+{% block og_title %}{{catalog_category.title_us|safe}}{% endblock %}
+{% block og_description %}{{catalog_category.description|safe}}{% endblock %}
+
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+{% block image_src %}https://rkediplom.s3files.ru{% if catalog_category.image %}/media/{{catalog_category.image|safe}}{% else %}/media/zaglavka.png{% endif %}{% endblock %}
+{% block og_image %}https://rkediplom.s3files.ru{% if catalog_category.image %}/media/{{catalog_category.image|safe}}{% else %}/media/zaglavka.png{% endif %}{% endblock %}
+
+
+{% block canonical %}{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ catalog_category.get_absolute_url }}{% endblock %}
+
+
+{% block content %}
+{% include "header.html" %}
+
+
+<style>
+    .search_wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+        #tree {
+            width: 100%;
+            height: calc(100vh - 91px) !important;
+        }
+
+h1{
+        position: absolute;
+    color: #acacac;
+    z-index: 99;
+    font-size: x-large;
+    left: 20px;
+    top: 20px;
+}
+
+.container_drevo{
+    position: relative;
+}
+
+button#clearLocalStorageButton {
+    background: no-repeat;
+    border: 0;
+    padding: 0;
+}
+.bft-dark h1, .bft-light h1 {
+    font-size: 24px;
+    line-height: 1;
+}
+
+*[data-bft-edit-form]{
+    z-index: 99;
+}
+svg[data-edit-from-close] path{
+ fill: #757575 !important;
+}
+
+.bft-edit-form-instruments{
+    display: none;
+}
+
+.bft-edit-form-header {
+    margin-bottom: 60px;
+}
+
+h1.bft-edit-form-title{
+    display: none;
+}
+
+</style>
+
+<nav aria-label="Хлебные крошки">
+        
+	<div class="breadcrumbs">
+	<a href="/">Начало</a>
+	› Генеалогическое древо > <button id="clearLocalStorageButton">Обновить</button>
+
+	</div>
+
+</nav>
+
+<div class="container_drevo">
+
+<h1>{{text}}</h1>
+
+<script>
+// Функция для очистки локального хранилища и перезагрузки страницы
+function clearLocalStorageAndReload() {
+    // Очищаем локальное хранилище
+    localStorage.clear();
+    // Перезагружаем страницу
+    location.reload();
+}
+
+// Находим кнопку по id
+var clearLocalStorageButton = document.getElementById("clearLocalStorageButton");
+
+// Назначаем обработчик события клика на кнопку
+clearLocalStorageButton.addEventListener("click", clearLocalStorageAndReload);
+</script>
+
+<!-- <script src="/media/familytree2-fix.js"></script> -->
+<script src="/media/familytree2.js"></script> 
+
+
+
+
+<div id="tree"></div></div>
+
+
+
+<script> 
+    localStorage.clear();
+</script>
+
+<script>
+    FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.tommy);
+    // FamilyTree.templates.myTemplate = Object.assign({}, FamilyTree.templates.tommy);
+    FamilyTree.templates.myTemplate.size = [250, 120];
+
+
+    FamilyTree.templates.myTemplate.nodeMenuButton ='';
+
+
+    FamilyTree.templates.myTemplate.defs = ``;
+
+    FamilyTree.templates.myTemplate.ripple = {
+        radius: 100,
+        color: "#e6e6e6",
+        rect: null
+    };
+
+ 
+
+    const imgTemplate =
+            '<use xlink:href="#base_img_0_stroke" x = -85 /><clipPath id="ulaImg">' +
+            '<rect  height="70" width="70" x="85" y="-5" stroke-width="1" fill="#FF46A3" stroke="#aeaeae" rx="27" ry="27"></rect>' +
+            '</clipPath>' +
+            '<image x="85" y="-5" preserveAspectRatio="xMidYMid slice" clip-path="url(#ulaImg)" xlink:href="{val}" width="70" height="70">' +
+            '</image>';
+
+        FamilyTree.templates.myTemplate.img_0 = imgTemplate;
+        FamilyTree.templates.myTemplate.img_0 = imgTemplate;
+
+        
+
+    FamilyTree.templates.myTemplate.field_0 = '<text style="font-size: 16px;" fill="#ffffff" x="120" y="90"\
+     text-anchor="middle">{val}</text>';
+    FamilyTree.templates.myTemplate.field_1 = '<text style="font-size: 12px;font-weight: 600; fill: #ffffff;"  x="120" y="110"\
+     text-anchor="middle">{val}</text>';
+
+    
+    // FamilyTree.templates.myTemplate.field_2 = '<text style="font-size: 12px; fill: #ffffff;" x="120" y="130" text-anchor="middle">{val}</text>';
+
+    // FamilyTree.templates.myTemplate.field_2 = '<a href="{val}">';
+    // FamilyTree.templates.myTemplate.node = '';
+ 
+    FamilyTree.templates.myTemplate.up ='<use x="210" y="10" xlink:href="#base_up"></use>';
+    // FamilyTree.templates.myTemplate.up ='';
+    
+
+    FamilyTree.templates.myTemplate_male = Object.assign({}, FamilyTree.templates.myTemplate);
+    FamilyTree.templates.myTemplate_male.node = '<a href="{val}"><rect x="0" y="0" height="120" width="250" \
+        stroke-width="0" fill="url(#hugo_grad_male)" stroke="#aeaeae" rx="7" ry="7"></rect></a>';
+    
+    FamilyTree.templates.myTemplate_female = Object.assign({}, FamilyTree.templates.myTemplate);
+    FamilyTree.templates.myTemplate_female.node = '<a href="{val}"><rect x="0" y="0" height="120" width="250" \
+        stroke-width="0" fill="url(#hugo_grad_female)" stroke="#aeaeae" rx="7" ry="7"></rect></a>';
+        
+
+
+   
+    var family = new FamilyTree(document.getElementById('tree'), {
+    mouseScrool: FamilyTree.none,
+    mode: 'light',
+    // template: 'hugo',
+    template: 'myTemplate',
+    menu: {
+            pdf: { text: "Export PDF" },
+            png: { text: "Export PNG" },
+            svg: { text: "Export SVG" },
+            csv: { text: "Export CSV" },
+            json: { text: "Export JSON" }
+        },
+        nodeMenu: {
+            pdf: { text: "Export PDF" },
+            png: { text: "Export PNG" },
+            svg: { text: "Export SVG" }
+        },
+    // roots: [3],
+    nodeMenu: {
+        edit: { text: 'Edit' },
+        details: { text: 'Details' },
+    },
+    // nodeTreeMenu: true,
+    nodeBinding: {
+        node: 'get_absolute_url',
+        img_0: 'photo',
+        field_0: 'name',
+        field_1: 'born',
+        field_2: 'email',
+        // node: ['email', 'born'],
+        
+        
+       
+        html: 'html'
+    },
+    editForm: {
+        titleBinding: "name",
+        photoBinding: "photo",
+        addMoreBtn: 'Add element',
+        addMore: 'Add more elements',
+        addMoreFieldName: 'Element name',
+        generateElementsFromFields: false,
+        elements: [
+            { type: 'textbox', label: 'Полное имя', binding: 'name' },
+            { type: 'textbox', label: 'Почта', binding: 'email' },
+            
+            { type: 'textbox', label: 'Телефон:', binding: 'phone' },
+            { type: 'textbox', label: 'Страна:', binding: 'country' },
+            { type: 'textbox', label: 'Город:', binding: 'city' },
+            { type: 'textbox', label: 'Дата:', binding: 'born' },
+           
+            // [
+            //     { type: 'select', options: [{ value: 'bg', text: 'Bulgaria' }, { value: 'ru', text: 'Russia' }, { value: 'gr', text: 'Greece' }], label: 'Страна', binding: 'country' },
+            //     { type: 'textbox', label: 'Город', binding: 'city' },
+            // ],
+            { type: 'textbox', label: 'Photo Url', binding: 'photo', btn: 'Upload' },
+        ]
+    },
+});
+
+
+
+// fid - отец
+// mid - мать
+// pids -  идентификаторы партнеров, связь между двумя партнерами (женой и мужем).
+
+
+
+
+family.load(
+    [
+
+        
+        {% for rd in family_tree.all %}
+            { 
+                id: {{rd.id}}, 
+            {% if rd.parents.all %} pids: [{% for i in rd.parents.all %}{{i.id}}{% if not forloop.last %},{% endif %}{% endfor %}], {% endif %}
+            {% if rd.parents_m.all %} mid: {% for i2 in rd.parents_m.all %}{{i2.id}}{% endfor %}, {% endif %}
+            {% if rd.parents_f.all %} fid: {% for i3 in rd.parents_f.all %}{{i3.id}}{% endfor %}, {% endif %}
+                gender: '{{rd.gender}}', 
+                photo: '{{ request.scheme }}://{{ request.META.HTTP_HOST }}/media/{{rd.image_tree}}', 
+                name: '{{rd.fullname}}', 
+                get_absolute_url: '{{rd.get_absolute_url}}',
+                born: '{{rd.fulldata}}' ,
+                {% if rd.country %}
+                country: '{{rd.country}}' ,
+                {% endif %}
+                {% if rd.city %}
+                city: '{{rd.city}}' ,
+                {% endif %}
+                {% if rd.phone %}
+                phone: '{{rd.phone}}' ,
+                {% endif %}
+            },
+        {% endfor %}
+ 
+
+        // { id: 1, pids: [3], gender: 'male', photo: 'https://cdn.balkan.app/shared/m60/2.jpg', name: 'Zeph Daniels Daniels', born: '09.29.1945 - 09.29.2015' },
+        // { id: 2, pids: [3], gender: 'male', photo: 'https://cdn.balkan.app/shared/m60/1.jpg', name: 'Rowan Annable Annable',  born: '09.29.1945 - 09.29.2015', email: '1111@gmail.com',  },
+        // { id: 3, pids: [1, 2], gender: 'female', photo: 'https://cdn.balkan.app/shared/w60/1.jpg', name: 'Laura Shepherd Shepherd', born: '09.29.1945 - 09.29.2015', email: 'laura.shepherd@gmail.com', phone: '+44 845 5752 547', city: 'Moscow', country: 'ru' },
+        // { id: 4, pids: [5], photo: 'https://cdn.balkan.app/shared/m60/3.jpg', name: 'Rowan Annable Annable',  born: '09.29.1945 - 09.29.2015' , email: 'laura.shepherd@gmail.com', },
+        // { id: 5, pids: [4], gender: 'female', photo: 'https://cdn.balkan.app/shared/w60/3.jpg', name: 'Lois Sowle Sowle', born: '09.29.1945 - 09.29.2015' , email: 'laura.shepherd@gmail.com',  },
+        // { id: 6, mid: 2, fid: 3, pids: [7], gender: 'female', photo: 'https://cdn.balkan.app/shared/w30/1.jpg', name: 'Tyler Heath Heath', born: '09.29.1945 - 09.29.2015' , email: 'laura.shepherd@gmail.com', },
+        // { id: 7, pids: [6], mid: 5, fid: 4, gender: 'male', photo: 'https://cdn.balkan.app/shared/m30/3.jpg', name: 'Samson Stokes Stokes',  born: '09.29.1945 - 09.29.2015', email: 'laura.shepherd@gmail.com', },
+        // { id: 8, mid: 7, fid: 6, gender: 'female', photo: 'https://cdn.balkan.app/shared/w10/3.jpg', name: 'Celeste Castillo Castillo',   born: '09.29.1945 - 09.29.2015', email: 'laura.shepherd@gmail.com',  }
+       
+  
+    ]
+);
+
+</script>
+
+
+
+</div>
+
+{% include "footer.html" %}
+{% endblock %}

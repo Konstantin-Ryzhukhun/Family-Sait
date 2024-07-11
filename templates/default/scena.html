@@ -1,0 +1,437 @@
+<!doctype html><html class="no-js" id="html-element" lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">	
+	
+	<!-- favicon -->
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="57x57" href="/media/favicon/apple-icon-57x57.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="60x60" href="/media/favicon/apple-icon-60x60.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="72x72" href="/media/favicon/apple-icon-72x72.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="76x76" href="/media/favicon/apple-icon-76x76.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="114x114" href="/media/favicon/apple-icon-114x114.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="120x120" href="/media/favicon/apple-icon-120x120.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="144x144" href="/media/favicon/apple-icon-144x144.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="152x152" href="/media/favicon/apple-icon-152x152.png">
+	<link data-n-head="ssr" rel="apple-touch-icon" sizes="180x180" href="/media/favicon/apple-icon-180x180.png">
+	<link data-n-head="ssr" rel="icon" type="image/png" sizes="192x192" href="/media/favicon/android-icon-192x192.png">
+	<link data-n-head="ssr" rel="icon" type="image/png" sizes="32x32" href="/media/favicon/favicon-32x32.png">
+	<link data-n-head="ssr" rel="icon" type="image/png" sizes="96x96" href="/media/favicon/favicon-96x96.png">
+	<link data-n-head="ssr" rel="icon" type="image/png" sizes="16x16" href="/media/favicon/favicon-16x16.png">
+	<link data-n-head="ssr" rel="manifest" href="/media/favicon/manifest.json">
+
+
+<style> 
+  @font-face {
+            font-family: 'CHOPIN';
+            src: url('/media/fonts/220d87ef9526965b154f4239480911c6.woff2');
+  }
+</style>
+
+<script defer="defer" src="/media/index/modernizr.d2ee5ac3eb6fdda1d26a.js"></script><script>var html = window.document.getElementById('html-element')
+      // check if browser is pre-renderer
+      if (window.__PRERENDER_INJECTED !== undefined) {
+        // overwrite classes set by modernizr with initial one
+        html.className = 'no-js'
+      } else {
+        // remove no-js class immediately
+        html.className = html.className.split('no-js').join('')
+      }
+
+      </script>
+      
+      <style>html {
+        background: #f7f9f3;
+      }
+
+      .not-supported-msg {
+        display: none;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      #app-loading,
+      #app-loading-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #f7f9f3;
+        z-index: 9999999;
+      }
+
+      .preloader {
+        width: auto !important;
+        height: 100px !important;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+      }
+
+      .no-es5object .not-supported-msg,
+      .no-js .not-supported-msg {
+        display: block !important;
+      }
+
+      .no-es5object #app,
+      .no-js #app,
+      .no-es5object #app-loading,
+      .no-js #app-loading {
+        display: none !important;
+      }</style>
+      <script id="scriptcookie1" data-rh="true" async="true" data-src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-domain-script="157639a9-61bc-4f0e-914e-cef1859d220f" data-document-language="true"></script>
+      <script id="scriptcookie2" data-src="https://cdn.cookielaw.org/opt-out/otCCPAiab.js" ccpa-opt-out-ids="C0002, C0003, C0004, C0005" ccpa-opt-out-lspa="false" ccpa-opt-out-geo="ca"></script>
+      <script>if (/(localhost|develop|192)/.test(window.location.origin)) {
+        var scriptCookie1 = document.getElementById('scriptcookie1')
+        var scriptCookie2 = document.getElementById('scriptcookie2')
+          if (/(master)/.test(window.location.origin)) {
+            scriptCookie1.setAttribute('data-domain-script', '157639a9-61bc-4f0e-914e-cef1859d220f-test')
+          }
+          scriptCookie1.src = scriptCookie1.getAttribute('data-src')
+          scriptCookie2.src = scriptCookie1.getAttribute('data-src')
+        }
+
+        /* setting global vars CMP */
+        var oneTrustLoaded = false;
+        var numberOfCallOptanWrapper = 0;
+        var permutiveToken = 'NO_CONSENT_ID_SET';
+        var cmpEnabled = false;
+
+        var cmpCookieSetting = {
+            basic: null,
+            performance: null,
+            functional: null,
+            targeting: null,
+            social: null
+          };
+
+        var cookieType = {
+            basic: "1:1",
+            performance: "2:1",
+            functional: "3:1",
+            targeting: "4:1",
+            social: "5:1"
+          };
+
+        function getCmpSettingType(cookieTypeName){
+          var response = null;
+          var _checkValue = new RegExp("^OptanonConsent=.*groups=[^=]*" + escape(cookieType[cookieTypeName]));
+          try {
+            response = document.cookie.split(";").find((function(_value) {
+              return _checkValue.test(_value.trim());
+            }
+            ));
+          } catch (e) {}
+          return response;
+        }
+
+        function getCmpSetting() {
+          for (var key in cookieType) {
+            var value = cookieType[key];
+            cmpCookieSetting[key] = !!getCmpSettingType(key);
+          }
+        }
+
+
+
+        function init(){
+          getCmpSetting();
+          cmpDataLayer();
+
+          var gdprApplied = false;
+
+          if (!gdprApplied && shouldApplyGDPR()) {
+            gdprApplied = true;
+
+          }
+
+          function shouldApplyGDPR() {
+            var gdprApplies = false;
+            var cmp = window.__cmp;
+            var tcfapi = window.__tcfapi;
+            if (cmp) {
+              cmp('ping', {}, function (e) {
+                if (e.cmpLoaded) {
+                  cmp('getConsentData', {}, function (e) {
+                    if (e.gdprApplies) {
+                      gdprApplies = true;
+                    }
+                  });
+                }
+              });
+            }
+            if (tcfapi) {
+              tcfapi('ping', 2, function (e) {
+                if (e.gdprApplies) {
+                  gdprApplies = true;
+                }
+              });
+            }
+
+            return gdprApplies;
+          }
+
+          function getPrivacyString() {
+            return getCookie('usprivacy') || '1---';
+          }
+
+
+          function getCookie(name, docCookies) {
+            docCookies = docCookies || document.cookie;
+            var cookies = docCookies.split(';');
+            var matchRegex = RegExp('^\\s*' + name + '=\\s*(.*?)\\s*$');
+
+            for (var i = 0; i < cookies.length; i++) {
+              var matched = cookies[i].match(matchRegex);
+
+              if (matched) {
+              return matched[1];
+              }
+            }
+          }
+        }
+
+        function cmpDataLayer() {
+          window.dataLayer = window.dataLayer || [];
+
+          for (var key in cookieType) {
+            var value = cookieType[key];
+            window.dataLayer.push({
+              event: key + "Consent",
+              token: permutiveToken,
+              opt_in: !!getCmpSettingType(key)
+            })
+          }
+        }
+
+        /* funziona ripresa dalla cookie policy standard */
+        function URL_add_parameter(url, param, value){
+          var hash       = {};
+          var parser     = document.createElement('a');
+
+          parser.href    = url;
+
+          var parameters = parser.search.split(/\?|&/);
+
+          for(var i=0; i < parameters.length; i++) {
+            if(!parameters[i])
+              continue;
+
+            var ary      = parameters[i].split('=');
+            hash[ary[0]] = ary[1];
+          }
+
+          hash[param] = value;
+
+          var list = [];
+          Object.keys(hash).forEach(function (key) {
+            list.push(key + '=' + hash[key]);
+          });
+
+          parser.search = '?' + list.join('&');
+          return parser.href;
+        }
+
+        var cookieEnabled = true;
+
+        try {
+          cookieEnabled = (navigator.cookieEnabled) ? true : false;
+          if (typeof navigator.cookieEnabled == "undefined"){
+            document.cookie="testcookie";
+            cookieEnabled = (document.cookie.indexOf("testcookie") != -1) ? true : false;
+            document.cookie = 'cookietest=; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+          }
+        } catch (e) {
+          cookieEnabled = true;
+        }
+
+        function OptanonWrapper(){
+          numberOfCallOptanWrapper++;
+          cmpEnabled = true;
+          oneTrustLoaded = true;
+
+          if (numberOfCallOptanWrapper >= 2) {
+            if(cookieEnabled === true){
+              location.href = URL_add_parameter(location.href, 'refresh_ce', '');
+            }
+          } else {
+            init();
+          }
+        }</script>
+               <script defer="defer" src="/media/index/npm.vuetify~dde583c9.044a8e744a7dfe635643.js"></script>
+        <script defer="defer" src="/media/index/npm.lodash~2930ad93.2a3c84b5c2fcb8baad68.js"></script>
+        <script defer="defer" src="/media/index/npm.babel~d9f352e0.68329f85f0808934e0c4.js"></script>
+        <script defer="defer" src="/media/index/npm.vuetify-loader~dd8c4cdb.928dab176ff7c356ba9a.js"></script>
+        <script defer="defer" src="/media/index/npm.core-js~41983590.b788ed77dfb8bcde5ffc.js"></script>
+        <script defer="defer" src="/media/index/npm.aws-sdk~90da32df.7b6b0b2f4dda6b3048be.js"></script>
+        <script defer="defer" src="/media/index/npm.apollo~2972e603.d19217e5032d210558ee.js"></script>
+        <script defer="defer" src="/media/index/npm.aws-amplify~bfebd808.f7f06b1810ccf1d9a3b1.js"></script>
+        <script defer="defer" src="/media/index/npm.browserify-sign~41d44f25.829e7cc618a3065c33de.js"></script>
+        <script defer="defer" src="/media/index/npm.graphql~37c1ccfb.5f0c8292e3bcfcac432a.js"></script>
+        <script defer="defer" src="/media/index/npm.amazon-cognito-identity-js~3ab2ac8f.7e475888090e9d28d2dc.js"></script>
+        <script defer="defer" src="/media/index/npm.aws-crypto~982c943a.cfcd27461c2c1e8b0a75.js"></script>
+        <script defer="defer" src="/media/index/npm.browserify-aes~048adfc0.d629939a439849cb7ac3.js"></script>
+        <script defer="defer" src="/media/index/npm.elliptic~6216c3af.695ad6f3369bffc86e15.js"></script>
+        <script defer="defer" src="/media/index/npm.hash-base~bd772472.dc8b83dce9202e34a3af.js"></script>
+        <script defer="defer" src="/media/index/npm.asn1.js~e811fd70.0b7c1bc5c441d8a1e196.js"></script>
+        <script defer="defer" src="/media/index/npm.readable-stream~2b6d3a99.6c428e2eaac0919fc402.js"></script>
+        <script defer="defer" src="/media/index/npm.hash.js~29746ebe.73ba74e8d56128cb7db6.js"></script>
+        <script defer="defer" src="/media/index/npm.sha.js~7fda9b95.cf242cd46fd5121e01d5.js"></script>
+        <script defer="defer" src="/media/index/npm.crypto-js~0fb92744.f7948f9237cd15d8745b.js"></script>
+        <script defer="defer" src="/media/index/npm.des.js~7cd27782.f0632032c69af8b5e116.js"></script>
+        <script defer="defer" src="/media/index/npm.pbkdf2~abe35504.e5f8e738b0d3c3e53fee.js"></script>
+        <script defer="defer" src="/media/index/npm.public-encrypt~2f944d6a.65b861369ac61ecb3889.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-lottie~3fce8d78.34b848d7eeedbb502a51.js"></script>
+        <script defer="defer" src="/media/index/npm.parse-asn1~644e72b6.a5ed46992bc54d6db952.js"></script>
+        <script defer="defer" src="/media/index/npm.uuid~badfb1c5.bab262bad11c068cd06b.js"></script>
+        <script defer="defer" src="/media/index/npm.monogrid~3d24c373.f0f045e22ff73c10180f.js"></script>
+        <script defer="defer" src="/media/index/npm.diffie-hellman~008b4089.f334a3b978dac37da132.js"></script>
+        <script defer="defer" src="/media/index/npm.gsap~a1f3e5b9.e8919bdfef8e9cde94d8.js"></script>
+        <script defer="defer" src="/media/index/npm.universal-cookie~d752ea7e.8551d0746fb0a695d2ff.js"></script>
+        <script defer="defer" src="/media/index/npm.wry~5f61dd74.f7e49d511c047276fd12.js"></script>
+        <script defer="defer" src="/media/index/npm.node-libs-browser~16229a89.49ccf8c61051fd52e8f2.js"></script>
+        <script defer="defer" src="/media/index/npm.querystring-es3~da54c247.bc8be697820f6cf67c4d.js"></script>
+        <script defer="defer" src="/media/index/npm.webpack~bf81ad4b.5a444200e19c687e9f2c.js"></script>
+        <script defer="defer" src="/media/index/npm.browserify-des~fe3c419d.7140cf569b8b56f978bc.js"></script>
+        <script defer="defer" src="/media/index/npm.browserify-rsa~7c01b450.57b5f2961d7146f43db9.js"></script>
+        <script defer="defer" src="/media/index/npm.create-hash~4d7098c0.39c561ba75bc2f276f6e.js"></script>
+        <script defer="defer" src="/media/index/npm.create-hmac~fa77841a.78c9b6107a24c049f719.js"></script>
+        <script defer="defer" src="/media/index/npm.css-loader~f928e598.0adc2815b4f8f1333da4.js"></script>
+        <script defer="defer" src="/media/index/npm.symbol-observable~15473107.0a12f587db2e76fa40f7.js"></script>
+        <script defer="defer" src="/media/index/npm.url~de47f514.714abadd2b51218b6227.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-style-loader~8ec3862d.6ad77074d2d2d7e94859.js"></script>
+        <script defer="defer" src="/media/index/npm.zen-observable~41137b15.9438adb35cef0a37876f.js"></script>
+        <script defer="defer" src="/media/index/npm.ungap~20d3e45a.3e05de11b896ddd881d9.js"></script>
+        <script defer="defer" src="/media/index/npm.animejs~7927e0ff.523999f4257fe4d2d2ea.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-apollo~d8b8ae95.ec2682cdeff21fda5491.js"></script>
+        <script defer="defer" src="/media/index/npm.base64-js~691ceb8b.f367ced317feb0f38deb.js"></script>
+        <script defer="defer" src="/media/index/npm.bn.js~62ab5815.c731690e48fe735e2f67.js"></script>
+        <script defer="defer" src="/media/index/npm.brorand~c8559b75.066e3086a470523c0bc4.js"></script>
+        <script defer="defer" src="/media/index/npm.browserify-cipher~c7576b4c.358211e3fbcc626265bb.js"></script>
+        <script defer="defer" src="/media/index/npm.buffer-xor~e021a6df.6e80019aa0f2da7f52ae.js"></script>
+        <script defer="defer" src="/media/index/npm.cipher-base~dc3dd2be.0f15265e31f81c2fa14a.js"></script>
+        <script defer="defer" src="/media/index/npm.console-polyfill~1c12885f.a9d4f99a955a6c2fe64b.js"></script>
+        <script defer="defer" src="/media/index/npm.core-util-is~daec267a.4333a2727444d2f168a8.js"></script>
+        <script defer="defer" src="/media/index/npm.create-ecdh~7420d86c.e38988eda759880c2341.js"></script>
+        <script defer="defer" src="/media/index/npm.crypto-browserify~1a0027eb.7524b64073dccf36b217.js"></script>
+        <script defer="defer" src="/media/index/npm.deepmerge~d75fd778.f040b1631f1579dc97d2.js"></script>
+        <script defer="defer" src="/media/index/npm.evp_bytestokey~72652877.abe2b7e8d14121fc87d1.js"></script>
+        <script defer="defer" src="/media/index/npm.fast-json-stable-stringify~b9cf1905.eab5b0551cdb57e79b59.js"></script>
+        <script defer="defer" src="/media/index/npm.graphql-tag~a5479035.78043af3106da24f8d12.js"></script>
+        <script defer="defer" src="/media/index/npm.hmac-drbg~c7d92a23.e3324d23c0d5fa1c86ca.js"></script>
+        <script defer="defer" src="/media/index/npm.ieee754~c6deff67.962acb7393f9c92fac31.js"></script>
+        <script defer="defer" src="/media/index/npm.inherits~803a9cee.45f7e527e2b84fec1467.js"></script>
+        <script defer="defer" src="/media/index/npm.intersection-observer~43ec74bd.b96b148d46de45b5cff9.js"></script>
+        <script defer="defer" src="/media/index/npm.isarray~959e3423.df0c49914fe8cff2b405.js"></script>
+        <script defer="defer" src="/media/index/npm.isomorphic-unfetch~e111df8f.ab3d762fff1a80230b36.js"></script>
+        <script defer="defer" src="/media/index/npm.js-cookie~4c46e50c.f802f18e8cf919aa8eba.js"></script>
+        <script defer="defer" src="/media/index/npm.lottie-web~57473a66.dec4c4e233b4d1583c94.js"></script>
+        <script defer="defer" src="/media/index/npm.md5.js~64e52cbc.f7ace725fcb1e8bb58c9.js"></script>
+        <script defer="defer" src="/media/index/npm.miller-rabin~25d3f61c.2afd35e10890011f0a8e.js"></script>
+        <script defer="defer" src="/media/index/npm.minimalistic-assert~f90ecf14.d13249f769800d9cab93.js"></script>
+        <script defer="defer" src="/media/index/npm.minimalistic-crypto-utils~7d0c1b1b.be9245b2e2c532d72742.js"></script>
+        <script defer="defer" src="/media/index/npm.optimism~0fa799fb.48d4b48f01c6cd0564a7.js"></script>
+        <script defer="defer" src="/media/index/npm.process-nextick-args~02019c91.679ef5e07c01ca22f5a4.js"></script>
+        <script defer="defer" src="/media/index/npm.process~16c59945.0001bd3cc7e83fc9573e.js"></script>
+        <script defer="defer" src="/media/index/npm.randombytes~e97c71ff.87bb11e128c26f375d0e.js"></script>
+        <script defer="defer" src="/media/index/npm.randomfill~fc29598e.6e2868d6a0b6982fd7a6.js"></script>
+        <script defer="defer" src="/media/index/npm.regenerator-runtime~ccfd30e1.8da4a6d1aa78dea64e44.js"></script>
+        <script defer="defer" src="/media/index/npm.ripemd160~fd83f0ff.66b4f28e590549c9e9cc.js"></script>
+        <script defer="defer" src="/media/index/npm.safe-buffer~2975ef34.8da850829dcc5a73d8cc.js"></script>
+        <script defer="defer" src="/media/index/npm.safer-buffer~7f5514eb.ae39846f2199032b18ea.js"></script>
+        <script defer="defer" src="/media/index/npm.stream-browserify~dc371a54.21138ca8e0601313318c.js"></script>
+        <script defer="defer" src="/media/index/npm.string_decoder~7cac870f.8ce2eb6e567e0a655642.js"></script>
+        <script defer="defer" src="/media/index/npm.tslib~73d8ab38.ebadad906eb9b4fa952a.js"></script>
+        <script defer="defer" src="/media/index/npm.unfetch~45fb2b4f.a40505ec241185a46c41.js"></script>
+        <script defer="defer" src="/media/index/npm.util-deprecate~14772377.6c03a6db99a372ae555a.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-analytics~320713c8.bb120cb3c083dc18e5b1.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-event-handler~925cd78c.3c7e605bb89711abbf23.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-gettext~9ec5acf7.d9270e38aaa3052f91de.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-loader~06e90eef.74118628819173089552.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-meta~3c3607e7.afbe9697426f7db33a78.js"></script>
+        <script defer="defer" src="/media/index/npm.vue-router~b1f96ece.a01b7d548a39a69d4f83.js"></script>
+        <script defer="defer" src="/media/index/npm.vue~daa565d3.e417207a9faee897c137.js"></script>
+        <script defer="defer" src="/media/index/npm.whatwg-fetch~2a85e171.9abd33717de6019d4bae.js"></script>
+        <script defer="defer" src="/media/index/main~748942c6.ec8fa9fc78dc96bd7cc0.js"></script>
+        <link as="script" href="/media/index/npm.axios~e4173fa2.7a26fd1753f7ca94a763.js" rel="preload">
+        <link as="script" href="/media/index/npm.jszip~ee79c5fb.d5920cf7b5859f447c77.js" rel="preload">
+        <link as="script" href="/media/index/npm.moment~2ee72088.5b08f306be1a09e35b81.js" rel="preload">
+        <link as="script" href="/media/index/npm.panolens~45f903fa.96f3f82b8f7e54278c5e.js" rel="preload">
+        <link as="script" href="/media/index/npm.plyr~ae89ab2c.9987a3a2b5351cc9b64f.js" rel="preload">
+        <link as="script" href="/media/index/npm.slugify~1b29307a.73cce6680c1b8b9a25cd.js" rel="preload">
+        <link as="script" href="/media/index/npm.three-css3drenderer~bae8ee30.7e669743f7506dcba8a3.js" rel="preload">
+        <link as="script" href="/media/index/npm.three~52589227.8d710d6b774bc297061e.js" rel="preload">
+        <link as="script" href="/media/index/npm.tweenjs~6ffbf678.794a534413e8c9715aaa.js" rel="preload">
+        <link as="script" href="/media/index/npm.vue-plyr~29b5c357.abe8c9abafbd1bd51aa7.js" rel="preload">
+        <link as="script" href="/media/index/page-about~f71cff67.e0eb2fc31c8f4cd0c588.js" rel="preload">
+        <link as="script" href="/media/index/page-about~page-calendar~page-home~page-virtual-popup~8a08f92d.d90115bee46bd15b0521.js" rel="preload">
+        <link as="script" href="/media/index/page-about~page-home~e1c417a4.230d167a02b03096fd18.js" rel="preload">
+        <link as="script" href="/media/index/page-about~page-virtual-popup~2a7aac33.c59d0ac724caeeb6ce27.js" rel="preload">
+        <link as="script" href="/media/index/page-calendar~31ecd969.1b15a9cae57a6412517b.js" rel="preload">
+        <link as="script" href="/media/index/page-calendar~page-virtual-popup~c0e72dea.560c81aacaa20265fac8.js" rel="preload">
+        <link as="script" href="/media/index/page-home~f71cff67.e7f32e950e03d865509e.js" rel="preload">
+        <link as="script" href="/media/index/page-home~page-virtual-popup~b8ccc773.c3daafbb6770ff3d24a9.js" rel="preload">
+        <link as="script" href="/media/index/page-virtual-popup~f71cff67.773e27460d32d0ec4326.js" rel="preload">
+		
+	
+		<meta name="theme-color" content="#100E17" />
+
+
+	
+	</head>
+	<body>
+		<nav aria-label="Хлебные крошки">
+        
+	<div class="breadcrumbs">
+		Начало
+	</div>
+
+</nav>
+
+
+<h1>Страница входа</h1>
+
+
+<a href="/drevo/">ГЕНЕАЛОГИЧЕСКОЕ ДЕРЕВО</a> <br> <br>
+<a href="/wiki/">БАЗА ЗНАНИЙ</a>  <br> <br>
+<a href="/travel/">ПУТЕШЕСТВИЕ</a>  <br> <br>
+
+		<div id="app"></div><transition id="app-loading-container"><div id="app-loading" v-if="visible"><img class="preloader" src="/media/index/preloader.gif"></div></transition><div class="not-supported-msg"><p>Sorry This Browser is not Supported</p><p>Please make sure you enabled javascript and use an updated browser to experience this website</p></div><style>#ot-sdk-btn-container {
+        position: relative!important;
+        bottom: auto !important;
+        right: auto !important;
+        z-index: 999999;
+      }
+
+      #ot-sdk-btn.ot-sdk-show-settings {
+        list-style-type: none !important;
+        font-feature-settings: normal !important;
+        line-break: auto !important;
+        text-decoration: none !important;
+        white-space: nowrap !important;
+        color: #fff !important;
+        margin: 6px 12px !important;
+        font-weight: 400 !important;
+        line-height: 20px !important;
+        text-align: center !important;
+        display: inline-block !important;
+        cursor: pointer !important;
+        border: 1px solid #fff !important;
+        padding: 8px 12px !important;
+        background: none !important;
+        outline: none;
+      }
+
+      @media (min-width: 960px) {
+        #ot-sdk-btn-container {
+          position: fixed !important;
+          bottom: 11px !important;
+          right: -6px !important;
+        }
+      }</style><div id="ot-sdk-btn-container" class="optanon-show-settings-container" v-show="visible"><button id="ot-sdk-btn" class="optanon-show-settings ot-sdk-show-settings font-serif">Impostazioni dei cookie</button></div>
+
+
+
+	  </body>
+</html>

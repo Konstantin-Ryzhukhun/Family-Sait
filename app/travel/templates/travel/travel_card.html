@@ -1,0 +1,61 @@
+{% load thumbnail %}
+
+<div class="travel_card">
+	<div class="travel_card_l">
+		<div class="travel_card_l_name">{% if travel.name_block %}{{travel.name_block|safe}}{% endif %}</div>
+		<div class="travel_card_l_op">{% if travel.opisanie %}{{travel.opisanie|safe}}{% endif %}</div>
+	</div>
+	<div class="travel_card_r">
+		{% if travel.date1 %}{{travel.date1|safe}}{% endif %}
+		{% if travel.date2 %}{{travel.date2|safe}}{% endif %}
+
+
+		{% if travel.img_tovar %}
+		<a data-fancybox="img{{travel.id}}" data-caption="{{travel.name_block|safe}}" href="/media/{{travel.img_tovar}}">
+			{% thumbnail travel.img_tovar "x300" crop="center" format="WEBP" as im %}
+				<img loading="lazy" src="{{ im.url }}"
+				alt="{{travel.name_block|safe}}">
+			{% endthumbnail %}	
+		</a>
+		{% endif %}
+
+
+
+
+{% if travel.travelvideo.all %}
+	<div class="travelvideo_wrap">		
+	{% for video in travel.travelvideo.all %}
+		{% if video.video %}
+			<a class="video" data-fancybox="video{{travel.id}}" data-caption="{{video.name|safe}}" href="https://youtu.be/{{video.video|safe}}/" savefrom_lm_index="1" savefrom_lm="1">
+				
+				<div class="yt_v_w">
+					<div class="yt_v_w_fon" style=" background-image: url(https://i.ytimg.com/vi/{{travel.video|safe}}/maxresdefault.jpg); "></div>
+					<div class="play-wrap">
+						<div class="play"></div>
+					</div>
+					<div class="travel_name">{{video.name|safe}}</div>
+				</div>
+				
+			</a>
+		{% elif video.video2 %}
+			<a class="video" data-fancybox="video{{travel.id}}" data-caption="{{video.name|safe}}" href="/media/video/{{video.video2}}">
+				<div class="yt_v_w">
+						<div class="yt_v_w_fon" style=" background-image: url(/media/video_zg.webp); "></div>
+						<div class="play-wrap">
+							<div class="play"></div>
+						</div>
+						<div class="travel_name">{{video.name|safe}}</div>
+				</div>
+			</a>
+		{% endif %}
+	{% endfor %}
+	</div>
+{% endif %}
+
+	</div>
+
+
+
+
+
+</div>

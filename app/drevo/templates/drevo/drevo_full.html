@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+{% load static %}
+{% load thumbnail %}
+
+{% block title %}{{drevo_full.name}} {{drevo_full.otchestvo}} {{drevo_full.familiya}}{% endblock %}
+{% block description %}{{drevo_full.name}} {{drevo_full.otchestvo}} {{drevo_full.familiya}}{% endblock %}
+
+{% block og_title %}{{drevo_full.name}} {{drevo_full.otchestvo}} {{drevo_full.familiya}}{% endblock %}
+{% block og_description %}{{drevo_full.name}} {{drevo_full.otchestvo}} {{drevo_full.familiya}}{% endblock %}
+
+{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}
+{% block image_src %}https://rkediplom.s3files.ru{% if drevo_full.image %}/media/{{drevo_full.image|safe}}{% else %}/media/zaglavka.png{% endif %}{% endblock %}
+{% block og_image %}https://rkediplom.s3files.ru{% if drevo_full.image %}/media/{{drevo_full.image|safe}}{% else %}/media/zaglavka.png{% endif %}{% endblock %}
+
+
+{% block canonical %}{% if request.is_secure %}https://{% else %}http://{% endif %}{{ request.get_host }}{{ catalog_category.get_absolute_url }}{% endblock %}
+
+
+{% block content %}
+{% include "header.html" %}
+
+
+<link rel="stylesheet" href="/media/swiper11.min.css" />
+
+<style>
+
+.container_wiki h2 {
+    text-align: left;
+    font-weight: 300;
+    line-height: .9;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 2%;
+    text-transform: uppercase;
+}
+
+	.full_drevo_wrap_text{
+		margin: 0 auto;
+		margin-bottom: 0px;
+		background: #fbfbfb;
+		border: 0;
+		padding: 10px;
+		padding-left: 20px;
+		text-align: left;
+		border: 1px solid #e6e6e6;
+		/* padding: 15px 0 15px 44px; */
+		line-height: 1.6;
+		font-size: 14px;
+		margin-top: 20px;
+	}
+	.full_drevo_wrap{
+		margin: 15px;
+	}
+
+	.full_drevo_doc{}
+a.full_drevo_doc {
+		background: #ffffff;
+		border: solid 1px #e6e6e6;
+		border-radius: 2px;
+		display: inline-block;
+		height: 100px;
+		line-height: 100px;
+		margin: 5px;
+		position: relative;
+		text-align: center;
+		vertical-align: middle;
+		width: 100px;
+}
+
+a.full_drevo_doc span {
+		background: #417690;
+		border-radius: 4px;
+		color: #ffffff;
+		display: inline-block;
+		font-size: 11px;
+		font-weight: 700;
+		line-height: normal;
+		padding: 5px 10px;
+		position: relative;
+		text-transform: uppercase;
+		z-index: 1;
+}
+
+a.full_drevo_doc span:last-child {
+		margin-left: -20px;
+}
+
+a.full_drevo_doc:before,
+a.full_drevo_doc:after {
+		background: #ffffff;
+		border: solid 3px #9fb4cc;
+		border-radius: 4px;
+		content: '';
+		display: block;
+		height: 35px;
+		left: 50%;
+		margin: -17px 0 0 -12px;
+		position: absolute;
+		top: 50%;
+		/*transform:translate(-50%,-50%);*/
+		
+		width: 25px;
+}
+
+a.full_drevo_doc:hover:before,
+a.full_drevo_doc:hover:after {
+		background: #e2e8f0;
+}
+/*a:before{transform:translate(-30%,-60%);}*/
+
+a:before {
+		margin: -23px 0 0 -5px;
+}
+
+a.full_drevo_doc:hover {
+		background: #e2e8f0;
+		border-color: #9fb4cc;
+}
+
+a.full_drevo_doc:active {
+		background: #dae0e8;
+		box-shadow: inset 0 2px 2px rgba(0, 0, 0, .25);
+}
+
+a.full_drevo_doc span:first-child {
+		display: none;
+}
+
+a.full_drevo_doc:hover span:first-child {
+		display: inline-block;
+}
+
+a.full_drevo_doc:hover span:last-child {
+		display: none;
+}
+
+.full_drevo_doc_wrap{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+   swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+	.swiper-slide a {
+		display: block;
+		width: 100%;
+		height: 100%;
+	}
+
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .swiper-slide {
+          width: auto;
+    /* max-width: 30%; */
+	max-height: 370px;
+
+    }
+
+.swiper-button-next,
+.swiper-button-prev  {
+    color: #fff;
+
+}
+
+</style>
+
+
+
+<nav aria-label="Хлебные крошки">
+        
+	<div class="breadcrumbs">
+	<a href="/">Начало</a>
+	› <a href="/drevo/">Генеалогическое древо</a>
+	› {{drevo_full.familiya_pr}} {{drevo_full.name_pr}} {{drevo_full.otchestvo_pr}} 
+	</div>
+
+</nav>
+
+
+<div class="container_wiki" style="margin-bottom: 0px;">
+
+<h1>{{drevo_full.familiya_pr}} {{drevo_full.name_pr}} {{drevo_full.otchestvo_pr}} </h1>
+
+
+{% if drevo_full.date2 %}
+<div class="h1_date">Годы жизни: {{drevo_full.date1}} - {{drevo_full.date2}}</div>
+{% else %}
+<div class="h1_date">Год рождения: {{drevo_full.date1}}</div>
+{% endif %}
+
+
+<div class="full_drevo_wrap">
+
+	<!-- Slider main container -->
+	<div class="swiper">
+		<!-- Additional required wrapper -->
+		<div class="swiper-wrapper">
+
+		<div class="swiper-slide">
+			<a href="/media/{{drevo_full.image}}" data-fancybox="zz"
+				data-caption="Фотография {{drevo_full.familiya_pr}} {{drevo_full.name_pr}} {{drevo_full.otchestvo_pr}} ">
+			{% thumbnail drevo_full.image "x400" crop="center" format="WEBP" as im %}
+			<img loading="lazy" src="{{ im.url }}"
+				alt="Фотография {{drevo_full.familiya_pr}} {{drevo_full.name_pr}} {{drevo_full.otchestvo_pr}} ">
+			{% endthumbnail %}
+			</a>
+		</div>
+
+		{% if drevo_full.family_tree_images.all %}
+		
+			{% for images in drevo_full.family_tree_images.all %}
+			<div class="swiper-slide">
+				<a href="/media/{{images.image}}" data-fancybox="zz"
+					data-caption="Фотография {{drevo_full.familiya_pr}} {{drevo_full.name_pr}} {{drevo_full.otchestvo_pr}} ">
+				{% thumbnail images.image "x400" crop="center" format="WEBP" as im %}
+				<img loading="lazy" src="{{ im.url }}"
+					alt="Фотография {{drevo_full.familiya_pr}} {{drevo_full.name_pr}} {{drevo_full.otchestvo_pr}} ">
+				{% endthumbnail %}
+				</a>
+			</div>
+		
+			{% endfor %}
+		{% endif %}
+
+	</div>
+	<!-- If we need pagination -->
+	<div class="swiper-pagination"></div>
+	
+	<!-- If we need navigation buttons -->
+	<div class="swiper-button-prev"></div>
+	<div class="swiper-button-next"></div>
+	
+
+	</div>
+	
+
+<div class="full_drevo_wrap_text">
+		<h2>Описание:</h2>
+	<ul>
+		{% if drevo_full.country %}<li>Страна: <b>{{drevo_full.country|safe}}</b></li>{% endif %}
+		{% if drevo_full.city %}<li>Город: <b>{{drevo_full.city|safe}}</b></li>{% endif %}
+		{% if drevo_full.phone %}<li>Телефон: <b>{{drevo_full.phone|safe}}</b></li>{% endif %}
+	</ul>
+{{drevo_full.opisanie_full|safe}}
+</div>
+
+<br>
+
+{% if drevo_full.family_tree_files.all %}
+<div class="full_drevo_doc_wrap">
+
+{% for files in drevo_full.family_tree_files.all %}
+	
+		<a class="full_drevo_doc" href="/media/{{files.file}}" download><span>Загрузить</span><span>{{files.name}}</span></a>
+		
+
+	{% endfor %}
+	</div>
+{% endif %}
+
+</div>
+
+
+<script src="/media/swiper11.min.js"></script>
+
+
+<script>
+	const swiper = new Swiper('.swiper', {
+		
+			freeMode:"true" ,
+			spacebetween:"0",
+			slidesPerView:"3",
+			pagination:true,
+			navigation:true,
+	
+			// If we need pagination
+			pagination: {
+				el: '.swiper-pagination',
+			},
+
+			// Navigation arrows
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+
+		});
+</script>
+
+{% include "footer.html" %}
+{% endblock %}

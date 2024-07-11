@@ -1,0 +1,28 @@
+{% load static %} 
+{% block content %}
+
+
+{% include "svm_normalize.html" %}
+{% include "css.html" %}
+
+<script src="/media/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="/media/animate.min.css" />
+
+<header id="header">
+	<div id="branding">
+		<div id="site-name"><a href="/">Rkediplom</a></div>
+	</div>
+	<div id="user-tools">
+		Добро пожаловать,  <strong>{{request.user}}</strong>
+		 / 
+		{% if request.user.is_authenticated and request.user.is_staff %}
+		 <a href="/rk_admin/">Войти  в панель управления</a> /
+		{% endif %}
+		<a href="/logout/">Выйти</a> 
+	</div>
+</header>
+
+
+
+
+{% endblock %}
